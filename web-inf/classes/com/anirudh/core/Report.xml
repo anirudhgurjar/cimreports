@@ -1,0 +1,25 @@
+<Reports>
+<Report title="Employee Case Report" name="EmployeeCase">
+	<InputFields>
+		<Field name="empName" title="CSR Login ID" />
+		<Field name="empID" title="CSR ID" />
+		<Field name="startDate" title="start Date" /> 
+	</InputFields>
+	<sql>Select id_number from case where objid=#empName# and empID='#empID' and start_date=to_date('#startDate#' , 'dd/mm/yyyy' </sql>
+</Report>
+<Report name="AccountCase" title="Account Case Report" Category="Employee Reports">
+	<InputFields>
+		<Field name="accountID" title="Account ID" /> 
+		<Field name="startDate" title="Created after" /> 
+	</InputFields>
+	<sql>Select id_number from case where objid=#objid#</sql>
+</Report>
+
+<Report name="csrCases" title="CSR Cases Report" Category="CSR Reports">
+	<InputFields>
+		<Field name="csrId" title="CSR Login ID" /> 
+	</InputFields>
+	<sql>select id_number,creation_time,case_type_lvl1,case_type_lvl2,case_type_lvl3 from table_case cas INNER JOIN table_user usr on usr.objid=cas.CASE_OWNER2USER where usr.login_name='#csrId'</sql>
+</Report>
+
+</Reports>
